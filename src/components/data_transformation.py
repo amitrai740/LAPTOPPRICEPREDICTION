@@ -97,23 +97,36 @@ class DataTransformation:
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
 
+             # Print shapes of the input feature arrays
+
+            # Print shapes to confirm
+            print(input_feature_train_arr.shape, type(input_feature_train_arr))
+            print(input_feature_test_arr.shape, type(input_feature_test_arr))
+            print(input_feature_train_df.shape, type(input_feature_train_df))
+            print(input_feature_test_df.shape, type(input_feature_test_df))
+            print(np.array(target_feature_train_df).shape)
+            print(np.array(target_feature_test_df).shape)
             train_arr = np.c_[
-                [input_feature_train_arr], [np.array(target_feature_train_df)]
+                input_feature_train_arr.toarray(), np.array(target_feature_train_df).reshape(-1, 1)
             ]
-            test_arr = np.c_[[input_feature_test_arr], [np.array(target_feature_test_df)]]
+            # train_arr = np.column_stack((input_feature_train_arr, target_feature_train_df))
+            test_arr = np.c_[input_feature_test_arr.toarray(), np.array(target_feature_test_df).reshape(-1, 1)]
 
             save_object(
+
                 file_path=self.data_transformation_config.preprocessor_obj_file_path,
                 obj=preprocessing_obj
 
-
             )
 
-            return(
+            return (
                 train_arr,
                 test_arr,
-                self.data_transformation_config.preprocessor_obj_file_path
+                self.data_transformation_config.preprocessor_obj_file_path,
             )
+
+
+
 
         
 

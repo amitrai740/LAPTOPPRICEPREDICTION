@@ -26,7 +26,7 @@ class DataTransformation:
 
             ## Categorical and numerical columns
             
-            categorical_cols= ['Company', 'TypeName', 'CPU BRAND', 'Gpu Brand', 'OpSys']
+            categorical_cols= ['Company', 'TypeName', 'Cpu_Brand', 'Gpu_Brand', 'OpSys']
             numerical_cols=   ['Ram', 'Weight', 'Touchscreen', 'Ips', 'ppi', 'HDD', 'SSD']
 
             logging.info('Data Transformation pipeline initiated')
@@ -69,7 +69,15 @@ class DataTransformation:
             ###
             train_df=pd.read_csv(train_data_path)
             train_df=train_df.drop(columns=['Gpu'],axis=1)
+            train_df['Gpu_Brand']=train_df['Gpu Brand']
+            train_df.drop(columns=['Gpu Brand'],axis=1,inplace=True)
+            train_df['Cpu_Brand']=train_df['CPU BRAND']
+            train_df.drop(columns=['CPU BRAND'],axis=1,inplace=True)
             test_df=pd.read_csv(test_data_path)
+            test_df['Gpu_Brand']=test_df['Gpu Brand']
+            test_df.drop(columns=['Gpu Brand'],axis=1,inplace=True)
+            test_df['Cpu_Brand']=test_df['CPU BRAND']
+            test_df.drop(columns=['CPU BRAND'],axis=1,inplace=True)
             test_df=test_df.drop(columns=['Gpu'],axis=1)
 
             logging.info("Read train and test data completed")

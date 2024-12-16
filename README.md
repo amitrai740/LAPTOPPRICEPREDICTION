@@ -83,4 +83,9 @@ python app.py
 2. Enter the attributes of the Laptop in the input form.
 3. Click the "Predict" button.
 4. Receive the predicted price of the Laptop.
+
+### Step 6 : Results on new Data
+
+![Screenshot 2024-12-16 141838](https://github.com/user-attachments/assets/e07ab404-5710-40c7-86cd-2c7fb2721d52)
+
          
